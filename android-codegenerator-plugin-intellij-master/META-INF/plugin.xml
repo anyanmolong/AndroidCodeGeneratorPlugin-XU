@@ -11,9 +11,14 @@
         Author of this plugin is <b>Tomasz Morcinek</b>. <br/>
         Public <b>github</b> profile: <a href="https://github.com/tmorcinek">https://github.com/tmorcinek</a>.
 
-        <h2>Repository</h2>
+        <h2>仓库</h2>
         Project on github <a href="https://github.com/anyanmolong/AndroidCodeGeneratorPlugin-XU">AndroidCodeGeneratorPlugin-XU</a>
       
+        <h2>1.0.0 修改内容:</h2>
+        1. 增加了带xUtilsVIewUtil注解的XU模版和XU菜单项(想要用xUils3的话应该改下模版里的xUils包路径就行了);
+        2. 支持忽略以"activity_,fragment_,layout_"开头命名布局的activity等单词, 避免出现例如以fragment_cart.xml创建的Fragment类名称变成FragmentCartFragment.
+        3. 支持忽略xml中系统自动命名的"textView1,linearLayout2"的view
+        4. 增加"FIELDS_XU"模版关键字, 对view成员进行ViewUtils绑定
 
     ]]></description>
 
