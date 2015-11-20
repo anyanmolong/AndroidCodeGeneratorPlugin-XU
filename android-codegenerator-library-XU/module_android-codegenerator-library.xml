@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_android-codegenerator-library" default="compile.module.android-codegenerator-library">
+  <dirname property="module.android-codegenerator-library.basedir" file="${ant.file.module_android-codegenerator-library}"/>
+  
+  <property name="module.jdk.home.android-codegenerator-library" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.android-codegenerator-library" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.android-codegenerator-library" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.android-codegenerator-library" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="android-codegenerator-library.output.dir" value="${module.android-codegenerator-library.basedir}/target/classes"/>
+  <property name="android-codegenerator-library.testoutput.dir" value="${module.android-codegenerator-library.basedir}/target/test-classes"/>
+  
+  <path id="android-codegenerator-library.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="android-codegenerator-library.module.production.classpath">
+    <path refid="${module.jdk.classpath.android-codegenerator-library}"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+  </path>
+  
+  <path id="android-codegenerator-library.runtime.production.module.classpath">
+    <pathelement location="${android-codegenerator-library.output.dir}"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+  </path>
+  
+  <path id="android-codegenerator-library.module.classpath">
+    <path refid="${module.jdk.classpath.android-codegenerator-library}"/>
+    <pathelement location="${android-codegenerator-library.output.dir}"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.easytesting:fest-assert:1.4.classpath"/>
+    <path refid="library.maven:_org.easytesting:fest-util:1.1.6.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-all:1.9.5.classpath"/>
+  </path>
+  
+  <path id="android-codegenerator-library.runtime.module.classpath">
+    <pathelement location="${android-codegenerator-library.testoutput.dir}"/>
+    <pathelement location="${android-codegenerator-library.output.dir}"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.easytesting:fest-assert:1.4.classpath"/>
+    <path refid="library.maven:_org.easytesting:fest-util:1.1.6.classpath"/>
+    <path refid="library.maven:_org.mockito:mockito-all:1.9.5.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.android-codegenerator-library">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.android-codegenerator-library">
+    <patternset refid="excluded.from.module.android-codegenerator-library"/>
+  </patternset>
+  
+  <path id="android-codegenerator-library.module.sourcepath">
+    <dirset dir="${module.android-codegenerator-library.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="android-codegenerator-library.module.test.sourcepath">
+    <dirset dir="${module.android-codegenerator-library.basedir}">
+      <include name="src/test/java"/>
+      <include name="src/test/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.android-codegenerator-library" depends="compile.module.android-codegenerator-library.production,compile.module.android-codegenerator-library.tests" description="Compile module android-codegenerator-library"/>
+  
+  <target name="compile.module.android-codegenerator-library.production" depends="register.custom.compilers" description="Compile module android-codegenerator-library; production classes">
+    <mkdir dir="${android-codegenerator-library.output.dir}"/>
+    <javac2 destdir="${android-codegenerator-library.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.android-codegenerator-library}/javac">
+      <compilerarg line="${compiler.args.android-codegenerator-library}"/>
+      <bootclasspath refid="android-codegenerator-library.module.bootclasspath"/>
+      <classpath refid="android-codegenerator-library.module.production.classpath"/>
+      <src refid="android-codegenerator-library.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.android-codegenerator-library"/>
+    </javac2>
+    
+    <copy todir="${android-codegenerator-library.output.dir}">
+      <fileset dir="${module.android-codegenerator-library.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.android-codegenerator-library.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.android-codegenerator-library.tests" depends="register.custom.compilers,compile.module.android-codegenerator-library.production" description="compile module android-codegenerator-library; test classes" unless="skip.tests">
+    <mkdir dir="${android-codegenerator-library.testoutput.dir}"/>
+    <javac2 destdir="${android-codegenerator-library.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.android-codegenerator-library}/javac">
+      <compilerarg line="${compiler.args.android-codegenerator-library}"/>
+      <bootclasspath refid="android-codegenerator-library.module.bootclasspath"/>
+      <classpath refid="android-codegenerator-library.module.classpath"/>
+      <src refid="android-codegenerator-library.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.android-codegenerator-library"/>
+    </javac2>
+    
+    <copy todir="${android-codegenerator-library.testoutput.dir}">
+      <fileset dir="${module.android-codegenerator-library.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.android-codegenerator-library.basedir}/src/test/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.android-codegenerator-library" description="cleanup module">
+    <delete dir="${android-codegenerator-library.output.dir}"/>
+    <delete dir="${android-codegenerator-library.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_manifests" default="compile.module.manifests">
+  <dirname property="module.manifests.basedir" file="${ant.file.module_manifests}"/>
+  
+  <property name="module.jdk.home.manifests" value="${jdk.home.android_api_22_platform}"/>
+  <property name="module.jdk.bin.manifests" value="${jdk.bin.android_api_22_platform}"/>
+  <property name="module.jdk.classpath.manifests" value="jdk.classpath.android_api_22_platform"/>
+  
+  <property name="compiler.args.manifests" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="manifests.output.dir" value="undefined"/>
+  <property name="manifests.testoutput.dir" value="undefined"/>
+  
+  <path id="manifests.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="manifests.module.production.classpath">
+    <path refid="${module.jdk.classpath.manifests}"/>
+  </path>
+  
+  <path id="manifests.runtime.production.module.classpath"/>
+  
+  <path id="manifests.module.classpath">
+    <path refid="${module.jdk.classpath.manifests}"/>
+  </path>
+  
+  <path id="manifests.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.manifests">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.manifests">
+    <patternset refid="excluded.from.module.manifests"/>
+  </patternset>
+  
+  <path id="manifests.module.sourcepath">
+    <dirset dir="${module.manifests.basedir}">
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.manifests" depends="compile.module.manifests.production,compile.module.manifests.tests" description="Compile module manifests"/>
+  
+  <target name="compile.module.manifests.production" depends="register.custom.compilers" description="Compile module manifests; production classes">
+    <mkdir dir="${manifests.output.dir}"/>
+    <javac2 destdir="${manifests.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.manifests}/javac">
+      <compilerarg line="${compiler.args.manifests}"/>
+      <bootclasspath refid="manifests.module.bootclasspath"/>
+      <classpath refid="manifests.module.production.classpath"/>
+      <src refid="manifests.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.manifests"/>
+    </javac2>
+    
+    <copy todir="${manifests.output.dir}">
+      <fileset dir="${module.manifests.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.manifests.tests" depends="register.custom.compilers,compile.module.manifests.production" description="compile module manifests; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.manifests" description="cleanup module">
+    <delete dir="${manifests.output.dir}"/>
+    <delete dir="${manifests.testoutput.dir}"/>
+  </target>
+</project>

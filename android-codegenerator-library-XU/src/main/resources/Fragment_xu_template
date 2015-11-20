@@ -1,0 +1,29 @@
+import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.os.Bundle;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+${IMPORTS}
+
+public class ${CLASS_NAME}Fragment extends Fragment ${INTERFACES} {
+
+    ${FIELDS_XU}
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.${RESOURCE_NAME}, null);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ViewUtils.inject(this, view);
+
+        ${ASSIGNMENTS}
+    }
+
+    ${METHODS}
+}
