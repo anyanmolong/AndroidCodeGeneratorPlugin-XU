@@ -1,93 +1,26 @@
 <idea-plugin version="2" url="http://tmorcinek.github.io/android-codegenerator-plugin-intellij">
     <id>com.morcinek.android.codegenerator.plugin.intellij</id>
-    <name>Android Code Generator</name>
+    <name>Android Code Generator XU</name>
     <version>1.0.0</version>
     <vendor email="tomasz.morcinek@gmail.com" url="http://morcinek.co.uk">Tomasz Morcinek</vendor>
 
     <description><![CDATA[
-        <h1>Android Code Generator Plugin</h1>
+        <h1>Android Code Generator XU Plugin</h1>
 
-        <h2>Author</h2>
+        <h2>原作者</h2>
         Author of this plugin is <b>Tomasz Morcinek</b>. <br/>
         Public <b>github</b> profile: <a href="https://github.com/tmorcinek">https://github.com/tmorcinek</a>.
 
-        <h2>Repository</h2>
-        Project on github <a href="https://github.com/tmorcinek/android-codegenerator-plugin-intellij">android-codegenerator-plugin-intellij</a>
+        <h2>仓库</h2>
+        Project on github <a href="https://github.com/anyanmolong/AndroidCodeGeneratorPlugin-XU">AndroidCodeGeneratorPlugin-XU</a>
+      
+        <h2>1.0.0 修改内容:</h2>
+        1. 增加了带xUtilsVIewUtil注解的XU模版和XU菜单项(想要用xUils3的话应该改下模版里的xUils包路径就行了);
+        2. 支持忽略以"activity_,fragment_,layout_"开头命名布局的activity等单词, 避免出现例如以fragment_cart.xml创建的Fragment类名称变成FragmentCartFragment.
+        3. 支持忽略xml中系统自动命名的"textView1,linearLayout2"的view
+        4. 增加"FIELDS_XU"模版关键字, 对view成员进行ViewUtils绑定
 
-        <h2>Description</h2>
-        Plugin parses xml file, and retrieves data about all the views that contain android:id attribute. <br/>
-        Plugin collects information about view's type and id. Based on that, plugin generates fields, assignment, imports and methods. <br/>
-        Full project description on <a href="http://tmorcinek.github.io/android-codegenerator-plugin-intellij">github's information page</a>.
-
-        <h2>Features</h2>
-
-        <p>There are several very useful features some of them are:</p>
-
-        <ul>
-            <li>generating Activity Class code from layout</li>
-            <li>generating Fragment Class code from layout</li>
-            <li>generating Adapter Class code from item layout</li>
-            <li>generating Menu code from menu xml</li>
-            <li>creating files from code</li>
-            <li>preview screen with generated code that can be modified before creation of file</li>
-            <li>detection of project package</li>
-        </ul>
-
-        <i>Compiled with Java 1.6</i>
-        <br/>
-        <br/>
     ]]></description>
-
-    <change-notes><![CDATA[
-
-        <b>Version 1.4</b>
-        <ul>
-            <li>ISSUE #7: Android Studio throwing error when Android Designer editor is open.</li>
-            <li>ISSUE #8: Source path's on windows are too long.</li>
-            <li>ISSUE #9: Error when creating file on windows .</li>
-            <li>ISSUE #10: Adding github.io page link to Plugin description.</li>
-        </ul>
-
-        <b>Version 1.3</b>
-        <ul>
-            <li>Support for IntelliJ IDEA 14.</li>
-        </ul>
-
-        <b>Version 1.2</b>
-        <ul>
-            <li>ISSUE #2: Templates should be editable in PreferencesPages.</li>
-            <li>ISSUE #6: When plugin is about to override existing file content user should be informed.</li>
-            <li>ISSUE #5: Source path should be retrieved from project and there should be combo instead of text field.</li>
-        </ul>
-
-        <b>Version 1.1</b>
-        <ul>
-            <li>ISSUE #1: Editor should pops up when creating file.</li>
-            <li>ISSUE #3: Source path should be saved in persistence store.</li>
-            <li>ISSUE #4: Generate Code Menu Options should be available through editor.</li>
-        </ul>
-
-        <b>Version 1.0</b>
-        <ul>
-            <li>generating Activity Class code from layout</li>
-            <li>generating Fragment Class code from layout</li>
-            <li>generating Adapter Class code from item layout</li>
-            <li>generating Menu code from menu xml</li>
-            <li>creating files from code</li>
-            <li>preview screen with generated code that can be modified before creation of file</li>
-            <li>detection of project package</li>
-        </ul>
-    ]]>
-    </change-notes>
-
-    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="131"/>
-
-    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
 
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceInterface="com.morcinek.android.codegenerator.plugin.persistence.Settings"
