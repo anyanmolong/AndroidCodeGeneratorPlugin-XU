@@ -1,6 +1,6 @@
 # AndroidCodeGeneratorPlugin-XU
 
-原本的项目是叫做[android-parcelable-intellij-plugin](https://github.com/mcharmas/android-parcelable-intellij-plugin) 
+原本的项目是叫做[android-parcelable-intellij-plugin](https://github.com/mcharmas/android-parcelable-intellij-plugin) <br/>
 这是一个通过xml可以自动生成Activity,Fragment,适配器的代码或文件,以及Menu代码的插件.<br/>
 亮点在于可以通过`File → Settings → Other Settings → Android Code Generator`<br/>
 来编辑代码模版来达到生成自定义Activity等自己想要的代码效果.<br/>
