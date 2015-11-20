@@ -8,16 +8,15 @@
 但是该插件没法完全达到我想要的效果,于是我在其基础上尝试着做了一些修改.
 
 ##下载和安装##
--------
 
 - 下载[android-codegenerator-plugin-intellij.zip](https://github.com/anyanmolong/AndroidCodeGeneratorPlugin-XU/blob/master/android-codegenerator-plugin-intellij-master/android-codegenerator-plugin-intellij.zip) 文件并安装 `Preferences → Plugins → Install plugin from disk`
 
 
 ##使用方式##
--------
- 打开xml文件,右键点击对应菜单项
+
+ 打开xml文件,右键点击对应菜单项<br/>
  ![](img/demo_1.png)
- 出现面板后选择`Source → "/app/.../java"` 并填写/修改文件的包名(选择创建文件的话会在该包名下创建文件)
+ 出现面板后选择`Source → "/app/.../java"` 并填写/修改文件的包名(选择创建文件的话会在该包名下创建文件)<br/>
  代码太长超出屏幕时,点击代码后按下`Ctrl+Tab`来切换光标至按钮上
  ![](img/demo_2.png)
 
