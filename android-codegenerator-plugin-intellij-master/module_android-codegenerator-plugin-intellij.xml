@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_android-codegenerator-plugin-intellij" default="compile.module.android-codegenerator-plugin-intellij">
+  <dirname property="module.android-codegenerator-plugin-intellij.basedir" file="${ant.file.module_android-codegenerator-plugin-intellij}"/>
+  
+  <property name="module.jdk.home.android-codegenerator-plugin-intellij" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.android-codegenerator-plugin-intellij" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.android-codegenerator-plugin-intellij" value="${project.jdk.classpath}"/>
+
+  <property name="compiler.args.android-codegenerator-plugin-intellij" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="android-codegenerator-plugin-intellij.output.dir" value="undefined"/>
+  <property name="android-codegenerator-plugin-intellij.testoutput.dir" value="undefined"/>
+  
+  <path id="android-codegenerator-plugin-intellij.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="android-codegenerator-plugin-intellij.module.production.classpath">
+    <path refid="${module.jdk.classpath.android-codegenerator-plugin-intellij}"/>
+    <path refid="library.libs.classpath"/>
+  </path>
+
+  <path id="android-codegenerator-plugin-intellij.runtime.production.module.classpath">
+    <path refid="library.libs.classpath"/>
+  </path>
+  
+  <path id="android-codegenerator-plugin-intellij.module.classpath">
+    <path refid="${module.jdk.classpath.android-codegenerator-plugin-intellij}"/>
+    <path refid="library.libs.classpath"/>
+  </path>
+  
+  <path id="android-codegenerator-plugin-intellij.runtime.module.classpath">
+    <path refid="library.libs.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.android-codegenerator-plugin-intellij">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.android-codegenerator-plugin-intellij">
+    <patternset refid="excluded.from.module.android-codegenerator-plugin-intellij"/>
+  </patternset>
+  
+  <path id="android-codegenerator-plugin-intellij.module.sourcepath">
+    <dirset dir="${module.android-codegenerator-plugin-intellij.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+
+  
+  <target name="compile.module.android-codegenerator-plugin-intellij" depends="compile.module.android-codegenerator-plugin-intellij.production,compile.module.android-codegenerator-plugin-intellij.tests" description="Compile module android-codegenerator-plugin-intellij"/>
+  
+  <target name="compile.module.android-codegenerator-plugin-intellij.production" depends="register.custom.compilers" description="Compile module android-codegenerator-plugin-intellij; production classes">
+    <mkdir dir="${android-codegenerator-plugin-intellij.output.dir}"/>
+    <javac2 destdir="${android-codegenerator-plugin-intellij.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.android-codegenerator-plugin-intellij}/javac">
+      <compilerarg line="${compiler.args.android-codegenerator-plugin-intellij}"/>
+      <bootclasspath refid="android-codegenerator-plugin-intellij.module.bootclasspath"/>
+      <classpath refid="android-codegenerator-plugin-intellij.module.production.classpath"/>
+      <src refid="android-codegenerator-plugin-intellij.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.android-codegenerator-plugin-intellij"/>
+    </javac2>
+    
+    <copy todir="${android-codegenerator-plugin-intellij.output.dir}">
+      <fileset dir="${module.android-codegenerator-plugin-intellij.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.android-codegenerator-plugin-intellij.tests" depends="register.custom.compilers,compile.module.android-codegenerator-plugin-intellij.production" description="compile module android-codegenerator-plugin-intellij; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.android-codegenerator-plugin-intellij" description="cleanup module">
+    <delete dir="${android-codegenerator-plugin-intellij.output.dir}"/>
+    <delete dir="${android-codegenerator-plugin-intellij.testoutput.dir}"/>
+  </target>
+  
+  <property name="android-codegenerator-plugin-intellij.plugin.path.jar" value="${module.android-codegenerator-plugin-intellij.basedir}/android-codegenerator-plugin-intellij.zip"/>
+  
+  <!-- Build archive for plugin 'android-codegenerator-plugin-intellij' -->
+  <target name="plugin.build.jar.android-codegenerator-plugin-intellij" depends="compile.module.android-codegenerator-plugin-intellij" description="Build plugin archive for module &#39;android-codegenerator-plugin-intellij&#39;">
+    <property name="tmp.dir.android-codegenerator-plugin-intellij" value="${module.android-codegenerator-plugin-intellij.basedir}/../temp"/>
+    <mkdir dir="${tmp.dir.android-codegenerator-plugin-intellij}"/>
+    <mkdir dir="${tmp.dir.android-codegenerator-plugin-intellij}/lib"/>
+    <jar destfile="${tmp.dir.android-codegenerator-plugin-intellij}/lib/android-codegenerator-plugin-intellij.jar" duplicate="preserve">
+      <zipfileset dir=""/>
+      <zipfileset file="${module.android-codegenerator-plugin-intellij.basedir}/META-INF/plugin.xml" prefix="META-INF"/>
+      <manifest>
+        <attribute name="Created-By" value="IntelliJ IDEA"/>
+        <attribute name="Manifest-Version" value="1.0"/>
+      </manifest>
+    </jar>
+    <copy file="${module.android-codegenerator-plugin-intellij.basedir}/libs/guava-18.0.jar" tofile="${tmp.dir.android-codegenerator-plugin-intellij}/lib/guava-18.0.jar"/>
+    <copy file="${module.android-codegenerator-plugin-intellij.basedir}/libs/commons-lang3-3.3.2.jar" tofile="${tmp.dir.android-codegenerator-plugin-intellij}/lib/commons-lang3-3.3.2.jar"/>
+    <zip destfile="${android-codegenerator-plugin-intellij.plugin.path.jar}">
+      <fileset dir="${module.android-codegenerator-plugin-intellij.basedir}/../temp"/>
+    </zip>
+    <delete dir="${tmp.dir.android-codegenerator-plugin-intellij}"/>
+  </target>
+
+</project>
