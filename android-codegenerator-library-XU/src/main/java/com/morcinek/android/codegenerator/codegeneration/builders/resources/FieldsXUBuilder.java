@@ -33,6 +33,7 @@ public class FieldsXUBuilder extends ResourceCodeBuilder {
     @Override
     protected void processResourceProvider(ResourceProvider resourceProvider) {
         if (resourceProvider.provideField() != null) {
+//            System.out.println("类名:"+ resourceProvider.getClass().toString());
             // 获得view列表, 生成对应的代码块列表
             for (String field : resourceProvider.provideField()) {
                 // 读取该view对应的Provider(供应者)类提供的模版
@@ -43,7 +44,7 @@ public class FieldsXUBuilder extends ResourceCodeBuilder {
                 Map<String, String> map = resourceProvider.provideValues();
 
                 // 如果view名称为"class名+数字"的系统生成名称, 则跳过
-                if (isNumeric(map.get("RESOURCE_NAME").replace(map.get("RESOURCE_TYPE"), ""))) {
+                if (isNumeric(StringUtils.capitalize(map.get("RESOURCE_NAME")).replace(map.get("RESOURCE_TYPE"), ""))) {
                     continue;
                 }
 

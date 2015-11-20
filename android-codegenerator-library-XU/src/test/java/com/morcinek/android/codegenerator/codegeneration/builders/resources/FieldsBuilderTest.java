@@ -119,10 +119,6 @@ public class FieldsBuilderTest {
         treeMap.put("RESOURCE_NAME", name+3);
         treeMap.put("RESOURCE_ID", "R.id." + name+3); // 新加了Rid, 内注用
 
-        System.out.println(treeMap.get("RESOURCE_TYPE").toString());
-        System.out.println(treeMap.get("RESOURCE_NAME").toString());
-        System.out.println(treeMap.get("RESOURCE_ID").toString());
-
         when(resourceProvider.provideValues()).thenReturn(treeMap);
         when(resourceProvider.provideField()).thenReturn(fields);
         return resourceProvider;

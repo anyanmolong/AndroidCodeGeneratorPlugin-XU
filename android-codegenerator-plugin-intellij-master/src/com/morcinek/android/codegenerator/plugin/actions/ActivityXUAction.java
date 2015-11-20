@@ -2,6 +2,7 @@ package com.morcinek.android.codegenerator.plugin.actions;
 
 import com.morcinek.android.codegenerator.codegeneration.providers.ResourceProvidersFactory;
 import com.morcinek.android.codegenerator.codegeneration.providers.factories.ActivityResourceProvidersFactory;
+import com.morcinek.android.codegenerator.codegeneration.providers.factories.ActivityXUResourceProvidersFactory;
 
 /**
  * Copyright 2014 Tomasz Morcinek. All rights reserved.
@@ -20,6 +21,6 @@ public class ActivityXUAction extends LayoutAction {
 
     @Override
     protected ResourceProvidersFactory getResourceProvidersFactory() {
-        return new ActivityResourceProvidersFactory();
+        return new ActivityXUResourceProvidersFactory();
     }
 }

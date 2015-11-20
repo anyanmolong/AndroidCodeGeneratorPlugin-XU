@@ -27,7 +27,7 @@ public class DefaultXUProvider extends AbstractResourceProvider {
 
     @Override
     public Set<String> provideField() {
-        return Sets.newHashSet("");
+        return Sets.newHashSet("xu");
     }
 
     @Override

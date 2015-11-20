@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 public class FieldsXUBuilderTest {
 
     private ResourceTemplatesProvider templatesProvider = new ResourceTemplatesProvider();
-
     private ResourceCodeBuilder interfaceBuilder;
 
     private ResourceCodeBuilder provideFieldsViewUtilsBuilder(List<ResourceProvider> resourceProviders) {
@@ -98,7 +97,8 @@ public class FieldsXUBuilderTest {
         ResourceProvider resourceProvider = Mockito.mock(ResourceProvider.class);
         Map<String, String> treeMap = Maps.newHashMap();
         treeMap.put("RESOURCE_TYPE", StringUtils.capitalize(name));
-        treeMap.put("RESOURCE_NAME", name);
+        treeMap.put("RESOURCE_NAME", name+"qqq");
+//        treeMap.put("RESOURCE_NAME", name+1);
         treeMap.put("RESOURCE_ID", "R.id." + name); // 新加
         when(resourceProvider.provideValues()).thenReturn(treeMap);
         when(resourceProvider.provideField()).thenReturn(fields);
