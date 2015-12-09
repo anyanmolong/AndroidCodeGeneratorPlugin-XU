@@ -40,43 +40,11 @@ You can download zip file from [latest release](https://github.com/tmorcinek/and
 Change notes
 -------
 
-<b>Version 1.4</b>
+<b>Version 1.0.1</b>
 <ul>
-    <li>ISSUE #7: Android Studio throwing error when Android Designer editor is open.</li>
-    <li>ISSUE #8: Source path's on windows are too long.</li>
-    <li>ISSUE #9: Error when creating file on windows .</li>
-    <li>ISSUE #10: Adding github.io page link to Plugin description.</li>
+    <li>多行文件输入框增加滚动条</li>
 </ul>
 
-<b>Version 1.3</b>
-<ul>
-    <li>Support for IntelliJ IDEA 14.</li>
-</ul>
-
-<b>Version 1.2</b>
-<ul>
-    <li>ISSUE #2: Templates should be editable in PreferencesPages.</li>
-    <li>ISSUE #6: When plugin is about to override existing file content user should be informed.</li>
-    <li>ISSUE #5: Source path should be retrieved from project and there should be combo instead of text field.</li>
-</ul>
-
-<b>Version 1.1</b>
-<ul>
-    <li>ISSUE #1: Editor should pops up when creating file.</li>
-    <li>ISSUE #3: Source path should be saved in persistence store.</li>
-    <li>ISSUE #4: Generate Code Menu Options should be available through editor.</li>
-</ul>
-
-<b>Version 1.0</b>
-<ul>
-    <li>generating Activity Class code from layout</li>
-    <li>generating Fragment Class code from layout</li>
-    <li>generating Adapter Class code from item layout</li>
-    <li>generating Menu code from menu xml</li>
-    <li>creating files from code</li>
-    <li>preview screen with generated code that can be modified before creation of file</li>
-    <li>detection of project package</li>
-</ul>
 
 
 License

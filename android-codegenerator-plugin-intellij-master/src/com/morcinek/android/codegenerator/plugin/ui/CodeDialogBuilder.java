@@ -25,17 +25,36 @@ public class CodeDialogBuilder {
 
     private final JPanel topPanel;
 
-    private final JTextArea codeArea;
-    private JBTextField packageText;
+    private final JTextArea codeArea; // 多行文本输入框
+    private JBTextField packageText; // 单行文本输入框
     private JComboBox sourcePathComboBox;
 
     public CodeDialogBuilder(Project project, String title, String producedCode) {
+//        Toolkit kit = Toolkit.getDefaultToolkit();    // 定义工具包
+//        Dimension screenSize = kit.getScreenSize();   // 获取屏幕的尺寸
+//        int screenWidth = screenSize.width/2;         // 获取屏幕的宽
+//        int screenHeight = screenSize.height/2;       // 获取屏幕的高
+
+        JPanel centerPanel = new JPanel(new BorderLayout());
+//        centerPanel.setSize(200,200);
+//topPanel.;
         dialogBuilder = new DialogBuilder(project);
         dialogBuilder.setTitle(title);
 
-        JPanel centerPanel = new JPanel(new BorderLayout());
+
         codeArea = prepareCodeArea(producedCode);
-        centerPanel.add(codeArea, BorderLayout.CENTER);
+
+//        JTextArea txaDisplay = new JTextArea();
+        JScrollPane scroll = new JScrollPane(codeArea);
+//把定义的JTextArea放到JScrollPane里面去
+
+//分别设置水平和垂直滚动条自动出现
+        scroll.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//        scroll.setVerticalScrollBarPolicy(
+//                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        centerPanel.add(scroll, BorderLayout.CENTER);
         dialogBuilder.setCenterPanel(centerPanel);
 
         topPanel = new JPanel(new GridLayout(0, 2));

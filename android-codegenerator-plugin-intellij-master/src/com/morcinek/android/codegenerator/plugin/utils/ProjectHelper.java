@@ -15,7 +15,11 @@ import java.util.List;
 /**
  * Copyright 2014 Tomasz Morcinek. All rights reserved.
  */
-public class ProjectHelper {
+public class ProjectHelper{
+
+    public static void add(List<? super Integer> list) {
+        list.add(new Integer(22));       // yes
+    }
 
     public boolean fileExists(Project project, String fileName, String folderPath) throws IOException {
         try {
